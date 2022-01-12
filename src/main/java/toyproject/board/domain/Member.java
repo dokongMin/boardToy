@@ -12,11 +12,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "member")
-@Setter @Getter
+@Getter
 public class Member {
 
     @Id @GeneratedValue
-    @Column(name = "user_id")
+    @Column(name = "member_id")
     private Long id;
 
     @NotBlank(message = "아이디를 입력해주세요.")

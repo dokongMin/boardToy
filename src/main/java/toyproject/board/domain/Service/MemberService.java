@@ -2,6 +2,7 @@ package toyproject.board.domain.Service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import toyproject.board.domain.Member;
 import toyproject.board.domain.Repository.MemberRepository;
@@ -11,10 +12,12 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
+    @Transactional
     public Long join(@Valid Member member){
         validateDuplicateId(member);
         memberRepository.saveMember(member);
