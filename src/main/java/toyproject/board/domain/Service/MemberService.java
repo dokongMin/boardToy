@@ -3,7 +3,6 @@ package toyproject.board.domain.Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.annotation.Validated;
 import toyproject.board.domain.Member;
 import toyproject.board.domain.Repository.MemberRepository;
 

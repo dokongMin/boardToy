@@ -3,6 +3,7 @@ package toyproject.board.domain.Repository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import toyproject.board.domain.Member;
 
 import javax.persistence.EntityManager;
@@ -13,7 +14,9 @@ import java.util.List;
 public class MemberRepository {
 
     private final EntityManager em;
-
+    
+    
+    @Transactional
     public void saveMember(Member member){
         em.persist(member);
     }
