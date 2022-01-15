@@ -26,6 +26,15 @@ public class MemberController {
         return "member/memberJoinForm";
     }
 
+
+    @PostMapping("/memberJoinForm")
+    public String createMember(@ModelAttribute Member member){
+        memberService.join(member);
+        return "member/memberSaved";
+    }
+
+
+}
 //    @PostMapping("/memberJoinForm")
 //    public String createMember(Member member, RedirectAttributes redirectAttributes) {
 //        Long savedMember = memberService.join(member);
@@ -33,10 +42,3 @@ public class MemberController {
 //        redirectAttributes.addAttribute("status", true);
 //        return "member/memberSaved";
 //    }
-    @PostMapping("/memberJoinForm")
-    public String createMember(@ModelAttribute Member member){
-        memberService.join(member);
-        return "member/memberSaved";
-    }
-
-}
