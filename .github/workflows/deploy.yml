@@ -2,9 +2,9 @@ name: learn-git-hub-action
 
 on:
   push:
-    branches: [master]
+    branches: [ master ]
   pull_request:
-    branches: [master]
+    branches: [ master ]
   workflow_dispatch: # (2) 수동 실행
 
 jobs:
