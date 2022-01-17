@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import toyproject.board.domain.Member;
 import toyproject.board.domain.Repository.MemberRepository;
@@ -15,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @Transactional
-@Commit
 class MemberServiceTest {
 
     @Autowired
@@ -38,6 +38,7 @@ class MemberServiceTest {
     }
 
     @Test
+    @Rollback
     void 중복_회원_가입 (){
     //given
         Member member = Member.builder()
