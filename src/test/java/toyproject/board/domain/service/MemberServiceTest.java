@@ -20,6 +20,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @RunWith(SpringRunner.class)
 @Transactional
 @SpringBootTest
+
+
 class MemberServiceTest {
 
     @Autowired
@@ -61,4 +63,5 @@ class MemberServiceTest {
         //then
         assertThrows(IllegalStateException.class, () -> memberService.join(member2));
     }
+
 }
