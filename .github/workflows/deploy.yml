@@ -3,8 +3,8 @@ name: learn-git-hub-action
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
+#  pull_request:
+#   branches: [ master ]
   workflow_dispatch: # (2) 수동 실행
 
 jobs:
@@ -39,8 +39,4 @@ jobs:
         run: echo "CurrentTime=${{steps.current-time.outputs.formattedTime}}"
         shell: bash
 
-      - name: run test
-        run: ./gradlew test
 
-      - name: run build
-        run: ./gradlew clean build -x test
