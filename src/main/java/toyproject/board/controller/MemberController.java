@@ -1,25 +1,25 @@
 package toyproject.board.controller;
 
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import toyproject.board.service.MemberService;
 import toyproject.board.domain.Member;
-import toyproject.board.domain.Service.MemberService;
+import toyproject.board.dto.MemberDto;
+
+import java.security.Principal;
+import java.util.List;
 
 @Controller
-@RequiredArgsConstructor
+@AllArgsConstructor
 @RequestMapping("/member")
 public class MemberController {
 
     private final MemberService memberService;
-
-    @GetMapping("/memberLoginForm")
-    public String login() {
-        return "member/memberLoginForm";
-    }
 
     @GetMapping("/memberJoinForm")
     public String addForm() {
@@ -28,17 +28,25 @@ public class MemberController {
 
 
     @PostMapping("/memberJoinForm")
-    public String createMember(@ModelAttribute Member member){
-        memberService.join(member);
-        return "member/memberSaved";
+    public String createMember(@ModelAttribute MemberDto member) {
+        memberService.joinUser(member);
+        return "redirect:/";
     }
 
+    @GetMapping("/memberLoginForm")
+    public String login() {
+        return "member/memberLoginForm";
+    }
 
+    @GetMapping("/memberLoginResult")
+    public String loginResult() {
+        return "member/memberLoginResult";
+    }
+
+    @GetMapping("/memberList")
+    public String findAllMember(Model model){
+        List<Member> members = memberService.findAll();
+        model.addAttribute("members", members);
+        return "member/memberList";
+    }
 }
-//    @PostMapping("/memberJoinForm")
-//    public String createMember(Member member, RedirectAttributes redirectAttributes) {
-//        Long savedMember = memberService.join(member);
-//        redirectAttributes.addAttribute("memberId", savedMember);
-//        redirectAttributes.addAttribute("status", true);
-//        return "member/memberSaved";
-//    }

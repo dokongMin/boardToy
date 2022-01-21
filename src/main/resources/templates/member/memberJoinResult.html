@@ -1,5 +1,7 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +9,6 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
     <title>Signin Template · Bootstrap v5.1</title>
-
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
 
 
@@ -37,39 +38,38 @@
 
 
     <!-- Custom styles for this template -->
-
 </head>
 <body>
-
 <div class="container">
 
+    <div class="py-5 text-center">
+        <h2>회원가입 결과</h2>
+    </div>
+    <h2 th:text="'저장 완료!'" ></h2>
+
     <div>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>번호</th>
-                <th>아이디</th>
-                <th>비밀번호</th>
-                <th>이메일</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="member : ${members}">
-                <td th:text="${member.id}"></td>
-                <td th:text="${member.username}"></td>
-                <td th:text="${member.password}"></td>
-                <td th:text="${member.email}"></td>
-                <td>
-<!--                    <a href="#" th:href="@{/items/{id}/edit (id=${item.id})}" class="btn btn-primary" role="button">수정</a>-->
-                </td>
-            </tr>
-            </tbody>
-        </table>
+
+       <h3> <td th:text="${member.username}"></td> 님 회원가입을 축하드립니다 ! </h3>
+
+
+    <hr class="my-4">
+
+    <div class="row">
+        <div class="col">
+            <button class="w-100 btn btn-primary btn-lg"
+                    onclick="location.href='editForm.html'" type="button">회원 정보 수정</button>
+<!--                    th:onclick="|location.href='@{/member/memberList/{memberId}/memberEditForm(memberId=${member.id})}'|"-->
+
+        </div>
+        <div class="col">
+            <button class="w-100 btn btn-secondary btn-lg"
+                    onclick="location.href='index.html'"
+                    th:onclick="|location.href='@{/index.html}'|"
+                    type="button">메인으로</button>
+        </div>
     </div>
 
-
 </div> <!-- /container -->
-
+</div>
 </body>
 </html>

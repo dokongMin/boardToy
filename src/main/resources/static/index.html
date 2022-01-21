@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,7 +45,7 @@
                     <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
                 </a>
 
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <ul sec:authorize="!isAuthenticated()" class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" >
                     <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
                     <li><a href="#" class="nav-link px-2 text-white">Board</a></li>
                     <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
@@ -58,6 +59,7 @@
 
                 <div class="text-end">
                     <button type="button" class="btn btn-outline-light me-2" onclick="location.href='/member/memberLoginForm'">Login</button>
+                    <button type="button" class="btn btn-outline-light me-2" onclick="location.href='/member/MyPage'">MyPage</button>
                     <button type="button" class="btn btn-warning" onclick="location.href='/member/memberJoinForm'">Sign-up</button>
                 </div>
             </div>

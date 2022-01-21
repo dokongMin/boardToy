@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "board")
 @Getter @Setter
-public class Board {
+public class Board extends BaseTimeEntity{
 
     @Id @GeneratedValue
     @Column(name = "board_id")
