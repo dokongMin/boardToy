@@ -52,7 +52,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .and()
                 .exceptionHandling().accessDeniedPage("/member/denied");
+
+
     }
+
+  
 
     // 모든 인증을 처리하기 위한 AuthenticationManager
     @Override

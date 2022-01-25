@@ -2,6 +2,9 @@ package toyproject.board.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import toyproject.board.domain.Member;
 
 import java.util.List;
@@ -11,6 +14,9 @@ import java.util.Optional;
 public interface MemberRepository extends JpaRepository<Member, Long> {
     Optional<Member> findByUsername(String username);
     List<Member> findAll();
+    @Modifying
+    @Query(value = "UPDATE Member m set m.username = :name WHERE m.id =: id ", nativeQuery = false)
+    String update(@Param("username") String username, @Param("member_id") Long id);
 }
 
 //    private final EntityManager em;

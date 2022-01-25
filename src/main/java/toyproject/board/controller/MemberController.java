@@ -7,11 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import toyproject.board.service.MemberService;
 import toyproject.board.domain.Member;
 import toyproject.board.dto.MemberDto;
+import toyproject.board.service.MemberService;
 
-import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -49,4 +48,10 @@ public class MemberController {
         model.addAttribute("members", members);
         return "member/memberList";
     }
+
+//    @PostMapping("{memberId}/update")
+//    public String updateMemberForm(@PathVariable("memberId"), @ModelAttribute Member member){
+//        memberService.updateMember(member);
+//        return "redirect:/";
+//    }
 }

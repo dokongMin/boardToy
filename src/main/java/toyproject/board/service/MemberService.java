@@ -10,10 +10,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import toyproject.board.repository.MemberRepository;
 import toyproject.board.domain.Member;
 import toyproject.board.domain.Role;
 import toyproject.board.dto.MemberDto;
+import toyproject.board.repository.MemberRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +36,14 @@ public class MemberService implements UserDetailsService {
 //    }
     public List<Member> findAll(){
         return memberRepository.findAll();
+    }
+
+    public Optional<Member> findByUsername(String username){
+        return memberRepository.findByUsername(username);
+    }
+
+    public void updateMember(Member member){
+        memberRepository.update(member.getUsername(), member.getId());
     }
 
     @Transactional
