@@ -1,19 +1,16 @@
 package toyproject.board.controller;
 
 import lombok.AllArgsConstructor;
-import org.hibernate.sql.Update;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import toyproject.board.dto.UpdateForm;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import toyproject.board.service.MemberService;
 import toyproject.board.domain.Member;
 import toyproject.board.dto.MemberDto;
 
-import javax.jws.WebParam;
-import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.List;
 
@@ -52,10 +49,4 @@ public class MemberController {
         model.addAttribute("members", members);
         return "member/memberList";
     }
-
-//    @PostMapping("{memberId}/update")
-//    public String updateMemberForm(@PathVariable("memberId"), @ModelAttribute Member member){
-//        memberService.updateMember(member);
-//        return "redirect:/";
-//    }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <title>게시판</title>
     <meta charset="utf-8">
@@ -21,6 +21,10 @@
 </head>
 <body>
 
+<!--<div class="jumbotron text-center" style="margin-bottom:0">-->
+<!--    <h1>게시판</h1>-->
+<!--</div>-->
+
 <header class="p-3 bg-dark text-white">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -41,9 +45,8 @@
             </form>
 
             <div class="text-end">
-                <button type="button" class="btn btn-outline-light me-2" onclick="location.href='/member/memberLoginForm'">Login</button>
-                <button type="button" class="btn btn-outline-light me-2" onclick="location.href='/member/MyPage'">MyPage</button>
-                <button type="button" class="btn btn-warning" onclick="location.href='/member/memberJoinForm'">Sign-up</button>
+                <button type="button" class="btn btn-outline-light me-2" onclick="moveLogin();">Login</button>
+                <button type="button" class="btn btn-warning" onclick="moveJoin();">Sign-up</button>
             </div>
         </div>
     </div>
@@ -53,17 +56,17 @@
     <div class="row">
         <div class="col-sm-12">
             <h2>글쓰기</h2>
-            <form action="boardForm.html" th:action method = "POST">
+            <form action="writeAction" method = "POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label>제목:</label>
+                    <label for="usr">제목:</label>
                     <input type="text" class="form-control" id="title" name = "title">
                 </div>
-<!--                <div class="form-group">-->
-<!--                    <input type="file" class="form-control-file border" name="file">-->
-<!--                </div>-->
                 <div class="form-group">
-                    <label>내용:</label>
-                    <textarea class="form-control" rows="5" id="content" name = "content"></textarea>
+                    <input type="file" class="form-control-file border" name="file">
+                </div>
+                <div class="form-group">
+                    <label for="comment">내용:</label>
+                    <textarea class="form-control" rows="5" id="contents" name = "contents"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">글쓰기</button>
             </form>
