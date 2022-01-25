@@ -38,6 +38,14 @@ public class MemberService implements UserDetailsService {
         return memberRepository.findAll();
     }
 
+    public Optional<Member> findByUsername(String username){
+        return memberRepository.findByUsername(username);
+    }
+
+    public void updateMember(Member member){
+        memberRepository.update(member.getUsername(), member.getId());
+    }
+
     @Transactional
     public Long joinUser(MemberDto memberDto) {
         // 비밀번호 암호화

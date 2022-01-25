@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 public class Member extends BaseTimeEntity implements Serializable {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long id;
 
@@ -27,7 +27,7 @@ public class Member extends BaseTimeEntity implements Serializable {
     private String password;
     private String email;
 
-    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY) // 주인 필드 명
     private List<Board> board = new ArrayList<>();
 
     @Builder
@@ -36,6 +36,7 @@ public class Member extends BaseTimeEntity implements Serializable {
         this.password = password;
         this.email = email;
     }
+
 
     protected Member() {}
 
