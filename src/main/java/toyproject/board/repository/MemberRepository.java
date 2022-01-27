@@ -14,9 +14,9 @@ import java.util.Optional;
 public interface MemberRepository extends JpaRepository<Member, Long> {
     Optional<Member> findByUsername(String username);
     List<Member> findAll();
-    @Modifying
-    @Query(value = "UPDATE Member m set m.username = :name WHERE m.id =: id ", nativeQuery = false)
-    String update(@Param("username") String username, @Param("member_id") Long id);
+//    @Modifying
+//    @Query(value = "UPDATE Member m set m.username = :name WHERE m.id =: id ", nativeQuery = false)
+//    String update(@Param("username") String username, @Param("member_id") Long id);
 }
 
 //    private final EntityManager em;

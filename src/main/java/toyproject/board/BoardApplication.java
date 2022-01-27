@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfigura
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 //(exclude = SecurityAutoConfiguration.class )
-@SpringBootApplication(exclude={MultipartAutoConfiguration.class})
+@SpringBootApplication
 @EnableJpaAuditing
 public class BoardApplication {
 
