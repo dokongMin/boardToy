@@ -1,5 +1,7 @@
 package toyproject.board.domain;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -13,16 +15,19 @@ import java.util.List;
 @Getter
 public class Member extends BaseTimeEntity implements Serializable {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long id;
 
-//    @NotBlank(message = "아이디를 입력해주세요.")
+    //    @NotBlank(message = "아이디를 입력해주세요.")
 //    @Pattern(regexp = "^[a-zA-Z0-9]{3,12}$", message = "아이디를 3~12자로 입력해주세요. [특수문자 X]")
     private String username;
-//    @NotBlank(message = "비밀번호를 입력해주세요.")
+    //    @NotBlank(message = "비밀번호를 입력해주세요.")
 //    @Pattern(regexp = "^[a-zA-Z0-9]{3,12}$", message = "비밀번호를 3~12자로 입력해주세요.")
+
     private String password;
+
     private String email;
 
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY) // 주인 필드 명
@@ -36,7 +41,8 @@ public class Member extends BaseTimeEntity implements Serializable {
     }
 
 
-    protected Member() {}
+    protected Member() {
+    }
 
 
 }

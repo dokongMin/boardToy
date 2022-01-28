@@ -15,7 +15,6 @@ import java.util.List;
 public class BoardService {
 
     private final BoardRepository boardRepository;
-    private final MemberRepository memberRepository;
 
     @Transactional
     public Long saveBoard(BoardDto boardDto){
