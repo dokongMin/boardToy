@@ -16,6 +16,7 @@ public class Board extends BaseTimeEntity{
     private String title;
     private String content;
     private String createdBy;
+    private Long countVisit;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id") // 외래키를 설정
@@ -27,10 +28,11 @@ public class Board extends BaseTimeEntity{
     }
 
     @Builder
-    public Board(String title, String content, String createdBy) {
+    public Board(String title, String content, String createdBy,Long countVisit) {
         this.title = title;
         this.content = content;
         this.createdBy = createdBy;
+        this.countVisit = countVisit;
     }
 
     protected Board(){}

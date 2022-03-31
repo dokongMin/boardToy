@@ -42,9 +42,9 @@ public class MemberService implements UserDetailsService {
         return memberRepository.findByUsername(username);
     }
 
-    public void updateMember(Member member){
-        memberRepository.update(member.getUsername(), member.getId());
-    }
+//    public void updateMember(Member member){
+//        memberRepository.update(member.getUsername(), member.getId());
+//    }
 
     @Transactional
     public Long joinUser(MemberDto memberDto) {

@@ -1,5 +1,8 @@
 package toyproject.board.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiParam;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,11 +12,16 @@ import toyproject.board.domain.Member;
 @Getter
 @Setter
 @NoArgsConstructor
+@ApiModel
 public class MemberDto {
 
+    @ApiParam(value = "id", example = "1")
     private Long id;
+    @ApiParam(value = "username", example = "u")
     private String username;
+    @ApiParam(value = "password", example = "p")
     private String password;
+    @ApiParam(value = "email", example = "e")
     private String email;
 
     @Builder
