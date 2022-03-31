@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <title>게시판</title>
+    <title></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -55,21 +55,19 @@
 <div class="container" style="margin-top:30px">
     <div class="row">
         <div class="col-sm-12">
-            <h2>글쓰기</h2>
-            <form action="writeAction" method = "POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="usr">제목:</label>
-                    <input type="text" class="form-control" id="title" name = "title">
+                    <h5 th:text="'제목 : ' + ${board.title}"></h5>
                 </div>
-                <div class="form-group">
-                    <input type="file" class="form-control-file border" name="file">
+                <div>
+                    <td th:text="'작성자 : ' + ${board.createdBy}"></td>
+                    <br><br>
                 </div>
-                <div class="form-group">
-                    <label for="comment">내용:</label>
-                    <textarea class="form-control" rows="5" id="contents" name = "contents"></textarea>
+                <div style="border:1px solid; padding:10px;">
+                    <dl>
+                        <dt>내용</dt>
+                        <dd th:text="${board.content}"></dd>
+                    </dl>
                 </div>
-                <button type="submit" class="btn btn-primary">글쓰기</button>
-            </form>
         </div>
     </div>
 </div>

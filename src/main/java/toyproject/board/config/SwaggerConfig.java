@@ -21,8 +21,6 @@ public class SwaggerConfig {
     @Bean
     public Docket api(){
         return new Docket(DocumentationType.SWAGGER_2)
-                .consumes(getConsumeContentTypes())
-                .produces(getProduceContentTypes())
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.any())
@@ -40,16 +38,4 @@ public class SwaggerConfig {
                 .build();
     }
 
-    private Set<String> getConsumeContentTypes() {
-        Set<String> consumes = new HashSet<>();
-        consumes.add("application/json;charset=UTF-8");
-        consumes.add("application/x-www-form-urlencoded");
-        return consumes;
-    }
-
-    private Set<String> getProduceContentTypes() {
-        Set<String> produces = new HashSet<>();
-        produces.add("application/json;charset=UTF-8");
-        return produces;
-    }
 }

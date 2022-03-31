@@ -38,10 +38,9 @@ public class MemberController {
     @ApiOperation(value = "저장", notes = "테스트입니다")
     @PostMapping("/memberJoinForm")
     public String createMember(@ModelAttribute MemberDto member) {
-        String result= "테스트";
         memberService.joinUser(member);
-        return result;
-//        return "redirect:/";
+//        return result;
+        return "redirect:/";
     }
 
     @GetMapping("/memberLoginForm")
