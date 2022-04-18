@@ -35,7 +35,7 @@ public class ApplicationRunner implements org.springframework.boot.ApplicationRu
         for(int i=1; i<80;i++) {
             BoardDto boardDto = BoardDto.builder()
                     .title("임시"+i)
-                    .content("야야야")
+                    .content("완두콩의 블로그")
                     .countVisit(1L)
                     .createdBy("asd")
                     .build();

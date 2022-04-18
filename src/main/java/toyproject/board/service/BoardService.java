@@ -44,16 +44,13 @@ public class BoardService {
         return boardRepository.findAll(PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "id")));
 
     }
-//    public List<BoardDto> paging(int pageNum){
-//        Page<Board> page = boardRepository.findAll(PageRequest.of(pageNum - 1, 10, Sort.by(Sort.Direction.DESC, "id")));
-//
-//        List<Board> boards = page.getContent();
-//        List<BoardDto> boardDtoList = new ArrayList<>();
-//
-//        for (BoardDto boardDto : boardDtoList) {
-//            boardDto
-//        }
-//        return
-//    }
+
+    @Transactional
+    public void updateVisit(Long id, BoardDto boardDto){
+        Board board = boardRepository.findById(id).orElseThrow((() ->
+                new IllegalStateException("해당 게시글이 존재하지 않습니다.")));
+
+        board.updateVisit(boardDto.getCountVisit());
+    }
 
 }

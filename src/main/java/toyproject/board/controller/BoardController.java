@@ -13,11 +13,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import toyproject.board.domain.Board;
+import toyproject.board.domain.BoardComment;
 import toyproject.board.domain.Member;
+import toyproject.board.dto.BoardCommentDto;
 import toyproject.board.dto.BoardDto;
+import toyproject.board.repository.BoardCommentRepository;
 import toyproject.board.repository.BoardRepository;
+import toyproject.board.repository.MemberRepository;
+import toyproject.board.service.BoardCommentService;
 import toyproject.board.service.BoardService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -27,6 +33,9 @@ public class BoardController {
 
     private final BoardService boardService;
     private final BoardRepository boardRepository;
+    private final BoardCommentRepository boardCommentRepository;
+    private final BoardCommentService boardCommentService;
+    private final MemberRepository memberRepository;
 
     @GetMapping("/boardForm")
     public String addBoard() {
@@ -66,7 +75,45 @@ public class BoardController {
     @GetMapping("/boardContent/{id}")
     public String boardContent(@PathVariable("id") Long id, Model model) {
         Board board = boardRepository.findById(id).get();
-        System.out.println("board = " + board);
+        List<BoardComment> comments = boardCommentRepository.findCommentsBoardId(id);
+        Long countVisit = board.getCountVisit() + 1L;
+
+        BoardDto boardDto = BoardDto.builder()
+                .countVisit(countVisit)
+                .build();
+
+        boardService.updateVisit(board.getId(), boardDto);
+
+        model.addAttribute(board);
+        model.addAttribute("comments", comments);
+
+        return "/board/boardContent";
+    }
+
+    @PostMapping("/boardContent/{id}")
+    public String addComment(@PathVariable("id") Long id, @ModelAttribute BoardCommentDto boardCommentDto, Model model) {
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetails userDetails = (UserDetails) principal;
+        String username = userDetails.getUsername();
+
+        Board board = boardRepository.findById(id).get();
+        Member member = memberRepository.findByUsername(username).get();
+
+
+        LocalDateTime now = LocalDateTime.now();
+
+        boardCommentDto.setCreated_by(username);
+        boardCommentDto.setCreated_date(now);
+        boardCommentDto.setDelete_check('N');
+        boardCommentDto.setMember(member);
+        boardCommentDto.setBoard(board);
+
+        boardCommentService.saveBoardComment(boardCommentDto);
+
+        List<BoardComment> comments = boardCommentRepository.findCommentsBoardId(id);
+
+        model.addAttribute("comments", comments);
         model.addAttribute(board);
         return "/board/boardContent";
     }

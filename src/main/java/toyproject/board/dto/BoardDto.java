@@ -39,4 +39,8 @@ public class BoardDto {
         createdBy = board.getCreatedBy();
         countVisit = board.getCountVisit();
     }
+
+    public void updateVisit(Long countVisit){
+        this.countVisit = countVisit;
+    }
 }
