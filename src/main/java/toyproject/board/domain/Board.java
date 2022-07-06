@@ -24,4 +24,5 @@ public class Board {
     private Member member;
 
 
+    //
 }
