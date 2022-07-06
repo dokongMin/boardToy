@@ -56,4 +56,5 @@ public class Board extends BaseTimeEntity {
         this.countVisit = countVisit;
     }
 
+    // pr testing
 }
