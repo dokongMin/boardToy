@@ -12,9 +12,12 @@ public class BoardCommentService {
 
     private final BoardCommentRepository boardCommentRepository;
 
+
+
     @Transactional
     public Long saveBoardComment(BoardCommentDto dto){
         boardCommentRepository.save(dto.toEntity());
         return dto.getId();
     }
+
 }

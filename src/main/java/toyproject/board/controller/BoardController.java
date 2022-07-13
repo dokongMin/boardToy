@@ -76,13 +76,14 @@ public class BoardController {
     public String boardContent(@PathVariable("id") Long id, Model model) {
         Board board = boardRepository.findById(id).get();
         List<BoardComment> comments = boardCommentRepository.findCommentsBoardId(id);
-        Long countVisit = board.getCountVisit() + 1L;
 
-        BoardDto boardDto = BoardDto.builder()
-                .countVisit(countVisit)
-                .build();
+//        BoardDto boardDto = BoardDto.builder()
+//                .countVisit(board.getCountVisit()+1)
+//                .build();
+//
+//        boardService.updateVisit(board.getId(), boardDto);
 
-        boardService.updateVisit(board.getId(), boardDto);
+//        boardService.countVisitLogic(id);
 
         model.addAttribute(board);
         model.addAttribute("comments", comments);
@@ -103,11 +104,21 @@ public class BoardController {
 
         LocalDateTime now = LocalDateTime.now();
 
-        boardCommentDto.setCreated_by(username);
-        boardCommentDto.setCreated_date(now);
-        boardCommentDto.setDelete_check('N');
-        boardCommentDto.setMember(member);
-        boardCommentDto.setBoard(board);
+
+        BoardCommentDto boardCommentDtoSet = BoardCommentDto.builder()
+                .created_by(username)
+                .created_date(now)
+                .delete_check('N')
+                .member(member)
+                .board(board)
+                .build();
+        boardCommentDto = boardCommentDtoSet;
+
+//        boardCommentDto.setCreated_by(username);
+//        boardCommentDto.setCreated_date(now);
+//        boardCommentDto.setDelete_check('N');
+//        boardCommentDto.setMember(member);
+//        boardCommentDto.setBoard(board);
 
         boardCommentService.saveBoardComment(boardCommentDto);
 
