@@ -1,7 +1,5 @@
 package toyproject.board.domain;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -33,6 +31,9 @@ public class Member extends BaseTimeEntity implements Serializable {
 
     private String email;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @OneToMany(mappedBy = "member") // 주인 필드 명
     private List<Board> boardList = new ArrayList<>();
 
@@ -40,12 +41,22 @@ public class Member extends BaseTimeEntity implements Serializable {
     private List<BoardComment> boardCommentList = new ArrayList<>();
 
     @Builder
-    public Member(String username, String password, String email, List<Board> boardList, List<BoardComment> boardCommentList) {
+    public Member(String username, String password, String email, List<Board> boardList, List<BoardComment> boardCommentList,Role role) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.boardList = boardList;
         this.boardCommentList = boardCommentList;
+        this.role = role;
+    }
+
+    public Member update(String username){
+        this.username = username;
+//        this.password = password;
+        return this;
+    }
+    public String getRoleKey(){
+        return this.getRoleKey();
     }
 
 }

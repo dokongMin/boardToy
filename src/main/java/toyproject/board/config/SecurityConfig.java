@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-  
+
 
     // 모든 인증을 처리하기 위한 AuthenticationManager
     @Override
