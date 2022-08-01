@@ -13,10 +13,7 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
-import toyproject.board.config.auth.provider.FacebookUserInfo;
-import toyproject.board.config.auth.provider.GoogleUserInfo;
-import toyproject.board.config.auth.provider.NaverUserInfo;
-import toyproject.board.config.auth.provider.OAuth2UserInfo;
+import toyproject.board.config.auth.provider.*;
 import toyproject.board.detail.PrincipalDetails;
 import toyproject.board.domain.Member;
 //import toyproject.board.dto.OAuthAttributes;
@@ -67,6 +64,9 @@ public class CustomOAuth2MemberService implements OAuth2UserService<OAuth2UserRe
         }else if(userRequest.getClientRegistration().getRegistrationId().equals("naver")){
             System.out.println("네이버 로그인 요청");
             oAuth2UserInfo = new NaverUserInfo((Map)oAuth2User.getAttributes().get("response"));
+        }else if(userRequest.getClientRegistration().getRegistrationId().equals("kakao")){
+            System.out.println("카카오 로그인 요청");
+            oAuth2UserInfo = new KakaoUserInfo(oAuth2User.getAttributes());
         }else{
             System.out.println("구글과 페이스북만 지원");
         }
