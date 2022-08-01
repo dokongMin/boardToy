@@ -1,4 +1,4 @@
-//package toyproject.board.oauth;
+package toyproject.board.oauth;//package toyproject.board.oauth;
 //
 //import lombok.Getter;
 //

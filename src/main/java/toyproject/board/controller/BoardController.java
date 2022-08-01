@@ -99,7 +99,7 @@ public class BoardController {
         String username = userDetails.getUsername();
 
         Board board = boardRepository.findById(id).get();
-        Member member = memberRepository.findByUsername(username).get();
+        Member member = memberRepository.findByUsername(username);
 
 
         LocalDateTime now = LocalDateTime.now();

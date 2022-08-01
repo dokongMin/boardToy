@@ -21,7 +21,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class MemberService implements UserDetailsService {
+public class MemberService{
 
     private final MemberRepository memberRepository;
 
@@ -38,7 +38,7 @@ public class MemberService implements UserDetailsService {
         return memberRepository.findAll();
     }
 
-    public Optional<Member> findByUsername(String username){
+    public Member findByUsername(String username){
         return memberRepository.findByUsername(username);
     }
 
@@ -55,18 +55,12 @@ public class MemberService implements UserDetailsService {
         return memberRepository.save(memberDto.toEntity()).getId();
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Member> findName = memberRepository.findByUsername(username);
-        Member member = findName.get();
+    @Transactional
+    public Long joinUserWithMember(Member member) {
+        // 비밀번호 암호화
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        member.setPassword(passwordEncoder.encode(memberDto.getPassword()));
 
-        List<GrantedAuthority> authorities = new ArrayList<>();
-
-        if(("admin").equals(username)){
-            authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue()));
-        }else {
-            authorities.add(new SimpleGrantedAuthority(Role.USER.getValue()));
-        }
-        return new User(member.getUsername(), member.getPassword() , authorities);
+        return memberRepository.save(member).getId();
     }
 }

@@ -23,16 +23,20 @@ public class Member extends BaseTimeEntity implements Serializable {
 
     //    @NotBlank(message = "아이디를 입력해주세요.")
 //    @Pattern(regexp = "^[a-zA-Z0-9]{3,12}$", message = "아이디를 3~12자로 입력해주세요. [특수문자 X]")
+    @Column
     private String username;
     //    @NotBlank(message = "비밀번호를 입력해주세요.")
 //    @Pattern(regexp = "^[a-zA-Z0-9]{3,12}$", message = "비밀번호를 3~12자로 입력해주세요.")
-
+    @Column
     private String password;
-
+    @Column
     private String email;
+    private String provider;
+    private String providerId;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+//    @Enumerated(EnumType.STRING)
+    private String role;
+//    private String roles;
 
     @OneToMany(mappedBy = "member") // 주인 필드 명
     private List<Board> boardList = new ArrayList<>();
@@ -41,22 +45,27 @@ public class Member extends BaseTimeEntity implements Serializable {
     private List<BoardComment> boardCommentList = new ArrayList<>();
 
     @Builder
-    public Member(String username, String password, String email, List<Board> boardList, List<BoardComment> boardCommentList,Role role) {
+    public Member(String username, String password, String email, List<Board> boardList, List<BoardComment> boardCommentList, String role, String provider, String providerId) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.boardList = boardList;
         this.boardCommentList = boardCommentList;
         this.role = role;
+        this.provider = provider;
+        this.providerId = providerId;
     }
 
     public Member update(String username){
         this.username = username;
-//        this.password = password;
         return this;
     }
-    public String getRoleKey(){
-        return this.getRoleKey();
-    }
+//    public String getRoleKey(){
+//        return this.role.getKey();
+//    }
+//
+//    public String getRoleValue(){
+//        return this.role.getValue();
+//    }
 
 }
