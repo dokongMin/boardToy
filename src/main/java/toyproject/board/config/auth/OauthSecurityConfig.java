@@ -57,6 +57,7 @@ public class OauthSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .logoutSuccessUrl("/member/logoutResult")
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
                 .and()
                 .exceptionHandling().accessDeniedPage("/member/denied")
                 .and()

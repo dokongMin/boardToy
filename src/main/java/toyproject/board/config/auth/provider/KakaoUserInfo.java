@@ -1,5 +1,12 @@
 package toyproject.board.config.auth.provider;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.Map;
 
 public class KakaoUserInfo implements OAuth2UserInfo{
@@ -35,4 +42,25 @@ public class KakaoUserInfo implements OAuth2UserInfo{
     public String getName() {
         return (String) attributesProperties.get("nickname");
     }
+//    public void kakaoLogout(String access_Token) throws IOException {
+//        String reqURL = "https://kapi.kakao.com/v1/user/logout";
+//            URL url = new URL(reqURL);
+//            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//            conn.setRequestMethod("POST");
+//            conn.setRequestProperty("Authorization", "Bearer " + access_Token);
+//
+//            int responseCode = conn.getResponseCode();
+//            System.out.println("responseCode : " + responseCode);
+//
+//            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+//
+//            String result = "";
+//            String line = "";
+//
+//            while ((line = br.readLine()) != null) {
+//                result += line;
+//            }
+//            System.out.println(result);
+//        }
+
 }

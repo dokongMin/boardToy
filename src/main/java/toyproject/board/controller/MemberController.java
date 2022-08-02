@@ -17,6 +17,8 @@ import toyproject.board.dto.MemberDto;
 import toyproject.board.dto.SessionMember;
 import toyproject.board.service.MemberService;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -123,6 +125,14 @@ public class MemberController {
         List<Member> members = memberService.findAll();
         model.addAttribute("members", members);
         return "member/memberList";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request){
+        HttpSession session = request.getSession();
+
+        session.invalidate();
+        return "redirect:/";
     }
 
 //    @PostMapping("{memberId}/update")
