@@ -35,7 +35,7 @@ public class MemberController {
     private final MemberService memberService;
     private final HttpSession httpSession;
     @GetMapping("/memberJoinForm")
-    public String addForm() {
+    public String createMember() {
         return "member/memberJoinForm";
     }
 
@@ -99,17 +99,24 @@ public class MemberController {
 //            @ApiResponse(code = 404, message = "페이지 없음"),
 //            @ApiResponse(code = 500, message = "서버 에러")
 //    })
+//    @ApiOperation(value = "저장", notes = "테스트입니다")
+//    @PostMapping("/memberJoinForm")
+//    public String createMember(@ModelAttribute MemberDto member) {
+////        member.setRole(member.setRole(Role.USER.getValue()));
+//        member.setRole(Role.USER.getValue());
+//
+//        memberService.joinUser(member);
+////        return result;
+//        return "redirect:/";
+//    }
+
     @ApiOperation(value = "저장", notes = "테스트입니다")
     @PostMapping("/memberJoinForm")
-    public String createMember(@ModelAttribute MemberDto member) {
-//        member.setRole(member.setRole(Role.USER.getValue()));
+    public String createMember(@RequestBody MemberDto member) {
         member.setRole(Role.USER.getValue());
-
         memberService.joinUser(member);
-//        return result;
         return "redirect:/";
     }
-
     @GetMapping("/memberLoginForm")
     public String login() {
         return "member/memberLoginForm";
